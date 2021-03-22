@@ -110,15 +110,14 @@ RUN if [[ ${TENSORFLOW_PACKAGE} != "tf-nightly-gpu" ]]; then \
     fi
 
 # Install PyTorch (releases).
-RUN PYTORCH_CUDA=$(echo ${CUDA_DOCKER_VERSION} | awk -F- '{print $1}' | sed 's/\.//'); \
-    if [[ ${PYTORCH_PACKAGE} != "torch-nightly" ]]; then \
-        pip install ${PYTORCH_PACKAGE} ${TORCHVISION_PACKAGE} -f https://download.pytorch.org/whl/cu${PYTORCH_CUDA}/torch_stable.html; \
+RUN if [[ ${PYTORCH_PACKAGE} != "torch-nightly-cu"* ]]; then \
+        pip install ${PYTORCH_PACKAGE} ${TORCHVISION_PACKAGE} -f https://download.pytorch.org/whl/${PYTORCH_PACKAGE/*+/}/torch_stable.html; \
     fi
 # Pin Pillow<7.0: https://github.com/pytorch/vision/issues/1718
 RUN pip install "Pillow<7.0" --no-deps
 
 # Install MXNet (releases).
-RUN if [[ ${MXNET_PACKAGE} != "mxnet-nightly-cu"* ]] && [[ ${MXNET_PACKAGE} != "mxnet-cu"*"=="*b* ]]; then \
+RUN if [[ ${MXNET_PACKAGE} != "mxnet-nightly-cu"* ]]; then \
         pip install ${MXNET_PACKAGE} ; \
     fi
 
@@ -155,15 +154,13 @@ RUN if [[ ${TENSORFLOW_PACKAGE} == "tf-nightly-gpu" ]]; then \
     fi
 
 # Install PyTorch (nightly).
-RUN PYTORCH_CUDA=$(echo ${CUDA_DOCKER_VERSION} | awk -F- '{print $1}' | sed 's/\.//'); \
-    if [[ ${PYTORCH_PACKAGE} == "torch-nightly" ]]; then \
-        pip install --pre torch ${TORCHVISION_PACKAGE} -v -f https://download.pytorch.org/whl/nightly/cu${PYTORCH_CUDA}/torch_nightly.html; \
+RUN if [[ ${PYTORCH_PACKAGE} == "torch-nightly-cu"* ]]; then \
+        pip install --pre torch ${TORCHVISION_PACKAGE} -v -f https://download.pytorch.org/whl/nightly/${PYTORCH_PACKAGE/#torch-nightly-/}/torch_nightly.html; \
     fi
 
 # Install MXNet (nightly).
-RUN MXNET_CUDA=$(echo ${CUDA_DOCKER_VERSION} | awk -F- '{print $1}' | sed 's/\.//'); \
-    if [[ ${MXNET_PACKAGE} == "mxnet-nightly-cu"* ]] || [[ ${MXNET_PACKAGE} == "mxnet-cu"*"=="*b* ]]; then \
-        pip install --pre ${MXNET_PACKAGE/-nightly/} -f https://dist.mxnet.io/python/cu${MXNET_CUDA}; \
+RUN if [[ ${MXNET_PACKAGE} == "mxnet-nightly-cu"* ]]; then \
+        pip install --pre ${MXNET_PACKAGE/-nightly/} -f https://dist.mxnet.io/python/${MXNET_PACKAGE/#mxnet-nightly-/}; \
     fi
 
 # Install Horovod.
