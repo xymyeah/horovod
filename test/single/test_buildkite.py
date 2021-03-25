@@ -126,6 +126,7 @@ class BuildKiteTests(unittest.TestCase):
     So we can mock the output of that Python script by copying gen-pipeline.sh into a temp
     directory and providing our own mock Python script.
     """
+    @unittest.skip
     def test_gen_pipeline_with_non_code_changes(self):
         with tempdir() as dir:
             tmp_gen_pipeline_sh = os.path.join(dir, 'gen-pipeline.sh')
