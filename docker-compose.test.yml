@@ -196,7 +196,7 @@ services:
         CUDA_DOCKER_VERSION: 11.2.2-devel-ubuntu18.04
         CUDNN_VERSION: 8.1.1.33-1+cuda11.2
         NCCL_VERSION_OVERRIDE: 2.8.4-1+cuda11.2
-        TENSORFLOW_PACKAGE: tf-nightly-gpu
+        TENSORFLOW_PACKAGE: tf-nightly-gpu==2.5.0.dev20210322
         KERAS_PACKAGE: keras==2.4.3
         PYTORCH_PACKAGE: torch-nightly-cu111
         TORCHVISION_PACKAGE: torchvision
