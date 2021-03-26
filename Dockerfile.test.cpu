@@ -145,9 +145,11 @@ RUN if [[ ${KERAS_PACKAGE} != "None" ]] && [[ ${TENSORFLOW_PACKAGE} != "tf-night
 # Install PyTorch (releases).
 RUN if [[ ${PYTORCH_PACKAGE} != "torch-nightly" ]]; then \
         pip install ${PYTORCH_PACKAGE} ${TORCHVISION_PACKAGE} -f https://download.pytorch.org/whl/torch_stable.html; \
+        # Pin Pillow<7.0 for torchvision < 0.5.0: https://github.com/pytorch/vision/issues/1718
+        if [[ "${TORCHVISION_PACKAGE/%+*/}" == torchvision==0.[1234].* ]]; then \
+            pip install "Pillow<7.0" --no-deps; \
+        fi; \
     fi
-# Pin Pillow<7.0: https://github.com/pytorch/vision/issues/1718
-RUN pip install "Pillow<7.0" --no-deps
 
 # Install MXNet (releases).
 RUN if [[ ${MXNET_PACKAGE} != "mxnet-nightly" ]]; then \
@@ -187,6 +189,10 @@ RUN if [[ ${KERAS_PACKAGE} != "None" ]] && [[ ${TENSORFLOW_PACKAGE} == "tf-night
 # Install PyTorch (nightly).
 RUN if [[ ${PYTORCH_PACKAGE} == "torch-nightly" ]]; then \
         pip install --pre torch ${TORCHVISION_PACKAGE} -v -f https://download.pytorch.org/whl/nightly/cpu/torch_nightly.html; \
+        # Pin Pillow<7.0 for torchvision < 0.5.0: https://github.com/pytorch/vision/issues/1718
+        if [[ "${TORCHVISION_PACKAGE/%+*/}" == torchvision==0.[1234].* ]]; then \
+            pip install "Pillow<7.0" --no-deps; \
+        fi; \
     fi
 
 # Install MXNet (nightly).
