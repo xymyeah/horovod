@@ -133,7 +133,11 @@ RUN if [[ ${TENSORFLOW_PACKAGE} != "tf-nightly" ]]; then \
 # Pin h5py: https://github.com/h5py/h5py/issues/1732
 # Pin scipy!=1.4.0: https://github.com/scipy/scipy/issues/11237
 RUN if [[ ${KERAS_PACKAGE} != "None" ]] && [[ ${TENSORFLOW_PACKAGE} != "tf-nightly" ]]; then \
-        pip install ${KERAS_PACKAGE} "h5py<3" "scipy!=1.4.0" "pandas<1.1.0"; \
+        # pin h5py only for tensorflow<2.5
+        if [[ ${TENSORFLOW_PACKAGE} == tensorflow*==1.* ]] || [[ ${TENSORFLOW_PACKAGE} == tensorflow*==2.[01234].* ]]; then \
+            h5py="h5py<3"; \
+        fi; \
+        pip install ${KERAS_PACKAGE} $h5py "scipy!=1.4.0" "pandas<1.1.0"; \
         mkdir -p ~/.keras; \
         python -c "import tensorflow as tf; tf.keras.datasets.mnist.load_data()"; \
     fi
@@ -172,10 +176,10 @@ RUN if [[ ${TENSORFLOW_PACKAGE} == "tf-nightly" ]]; then \
     fi
 
 # Install Keras (if we have installed TensorFlow nightly).
-# Pin h5py: https://github.com/h5py/h5py/issues/1732
+# Do not pin h5py since tf>=2.5 requires h5py~=3.1
 # Pin scipy!=1.4.0: https://github.com/scipy/scipy/issues/11237
 RUN if [[ ${KERAS_PACKAGE} != "None" ]] && [[ ${TENSORFLOW_PACKAGE} == "tf-nightly" ]]; then \
-        pip install ${KERAS_PACKAGE} "h5py<3" "scipy!=1.4.0" "pandas<1.1.0"; \
+        pip install ${KERAS_PACKAGE} "scipy!=1.4.0" "pandas<1.1.0"; \
         mkdir -p ~/.keras; \
         python -c "import tensorflow as tf; tf.keras.datasets.mnist.load_data()"; \
     fi
