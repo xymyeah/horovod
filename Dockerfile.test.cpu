@@ -182,7 +182,7 @@ RUN if [[ ${MPI_KIND} == "ONECCL" ]]; then \
     fi; \
     cd /horovod && \
     python setup.py sdist && \
-    bash -c "${HOROVOD_BUILD_FLAGS} HOROVOD_WITH_TENSORFLOW=1 HOROVOD_WITH_PYTORCH=1 HOROVOD_WITH_MXNET=1 pip install -v $(ls /horovod/dist/horovod-*.tar.gz)[spark,ray]"
+    bash -c "${HOROVOD_BUILD_FLAGS} HOROVOD_WITH_TENSORFLOW=1 HOROVOD_WITH_PYTORCH=1 HOROVOD_WITH_MXNET=1 HOROVOD_WITH_PADDLEPADDLE=1 pip install -v $(ls /horovod/dist/horovod-*.tar.gz)[spark,ray]"
 
 # Hack for compatibility of MNIST example with TensorFlow 1.1.0.
 RUN if [[ ${TENSORFLOW_PACKAGE} == "tensorflow==1.1.0" ]]; then \

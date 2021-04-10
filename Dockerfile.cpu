@@ -68,7 +68,7 @@ RUN mkdir /tmp/openmpi && \
     rm -rf /tmp/openmpi
 
 # Install Horovod
-RUN MAKEFLAGS="-j1" HOROVOD_WITH_TENSORFLOW=1 HOROVOD_WITH_PYTORCH=1 HOROVOD_WITH_MXNET=1 \
+RUN MAKEFLAGS="-j1" HOROVOD_WITH_TENSORFLOW=1 HOROVOD_WITH_PYTORCH=1 HOROVOD_WITH_MXNET=1 HOROVOD_WITH_PADDLEPADDLE=1 \
     pip install --no-cache-dir horovod[all-frameworks]
 
 # Install OpenSSH for MPI to communicate between containers

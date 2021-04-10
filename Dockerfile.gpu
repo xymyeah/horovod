@@ -7,6 +7,7 @@ ENV TORCHVISION_VERSION=0.7.0
 ENV CUDNN_VERSION=7.6.5.32-1+cuda10.1
 ENV NCCL_VERSION=2.7.8-1+cuda10.1
 ENV MXNET_VERSION=1.6.0.post0
+ENV PADDLEPADDLE_VERSION=2.0.1.post101
 
 ENV PYSPARK_PACKAGE=pyspark==2.4.7
 ENV SPARK_PACKAGE=spark-2.4.7/spark-2.4.7-bin-hadoop2.7.tgz
@@ -45,7 +46,7 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
     python get-pip.py && \
     rm get-pip.py
 
-# Install TensorFlow, Keras, PyTorch and MXNet
+# Install TensorFlow, Keras, PyTorch, MXNet and PaddlePaddle
 RUN pip install future typing packaging
 RUN pip install tensorflow==${TENSORFLOW_VERSION} \
                 keras \
@@ -55,6 +56,8 @@ RUN PYTAGS=$(python -c "from packaging import tags; tag = list(tags.sys_tags())[
     pip install https://download.pytorch.org/whl/cu101/torch-${PYTORCH_VERSION}%2Bcu101-${PYTAGS}-linux_x86_64.whl \
         https://download.pytorch.org/whl/cu101/torchvision-${TORCHVISION_VERSION}%2Bcu101-${PYTAGS}-linux_x86_64.whl
 RUN pip install mxnet-cu101==${MXNET_VERSION}
+
+RUN pip install paddlepaddle-gpu==${PADDLEPADDLE_VERSION}
 
 # Install Spark stand-alone cluster.
 RUN wget --progress=dot:giga https://archive.apache.org/dist/spark/${SPARK_PACKAGE} -O - | tar -xzC /tmp; \
@@ -78,7 +81,7 @@ RUN mkdir /tmp/openmpi && \
 
 # Install Horovod, temporarily using CUDA stubs
 RUN ldconfig /usr/local/cuda/targets/x86_64-linux/lib/stubs && \
-    HOROVOD_GPU_OPERATIONS=NCCL HOROVOD_WITH_TENSORFLOW=1 HOROVOD_WITH_PYTORCH=1 HOROVOD_WITH_MXNET=1 \
+    HOROVOD_GPU_OPERATIONS=NCCL HOROVOD_WITH_TENSORFLOW=1 HOROVOD_WITH_PYTORCH=1 HOROVOD_WITH_MXNET=1 HOROVOD_WITH_PADDLEPADDLE=1 \
          pip install --no-cache-dir horovod[all-frameworks] && \
     ldconfig
 

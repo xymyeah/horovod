@@ -55,7 +55,7 @@ From *inside* the Horovod root directory, remove any previous build artifacts an
 .. code-block:: bash
 
     $ rm -rf build/ dist/
-    $ HOROVOD_WITH_PYTORCH=1 HOROVOD_WITH_TENSORFLOW=1 python setup.py install
+    $ HOROVOD_WITH_PYTORCH=1 HOROVOD_WITH_TENSORFLOW=1 HOROVOD_WITH_PADDLEPADDLE=1 python setup.py install
 
 Set ``HOROVOD_WITHOUT_[FRAMEWORK]=1`` to disable building Horovod plugins for that framework.
 This is useful when you’re testing a feature of one framework in particular and wish to save time.
@@ -64,7 +64,7 @@ For a debug build with checked assertions etc. replace the invocation of setup.p
 
 .. code-block:: bash
 
-    $ HOROVOD_WITH_PYTORCH=1 HOROVOD_WITH_TENSORFLOW=1 python setup.py build_ext --debug install
+    $ HOROVOD_WITH_PYTORCH=1 HOROVOD_WITH_TENSORFLOW=1 HOROVOD_WITH_PADDLEPADDLE=1 python setup.py build_ext --debug install
 
 
 Testing
