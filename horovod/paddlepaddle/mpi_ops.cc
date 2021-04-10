@@ -22,13 +22,13 @@
 #include <torch/torch.h>
 
 #include "../common/operations.h"
-#include "adapter_v2.h"
+#include "adapter.h"
 #include "cuda_util.h"
 #include "handle_manager.h"
 #include "ready_event.h"
 
 namespace horovod {
-namespace torch {
+namespace paddle {
 
 static HandleManager handle_manager;
 
@@ -682,5 +682,5 @@ PYBIND11_MODULE(mpi_lib_v2, m) {
   m.def("horovod_torch_reset", &Reset);
 }
 
-} // namespace torch
+} // namespace paddle
 } // namespace horovod

@@ -13,8 +13,8 @@
 // limitations under the License.
 // =============================================================================
 
-#ifndef HOROVOD_TORCH_TENSOR_UTIL_H
-#define HOROVOD_TORCH_TENSOR_UTIL_H
+#ifndef HOROVOD_PADDLE_TENSOR_UTIL_H
+#define HOROVOD_PADDLE_TENSOR_UTIL_H
 
 #include <TH/TH.h>
 #include <cassert>
@@ -31,7 +31,7 @@ extern THCState* state;
 #endif
 
 namespace horovod {
-namespace torch {
+namespace paddle {
 
 using namespace horovod::common;
 
@@ -286,7 +286,7 @@ TENSOR_UTIL_DEFINE_CUDA_TYPE_H(DataType::HOROVOD_FLOAT64, THCudaDoubleTensor,
                                THDoubleTensor)
 #endif
 
-} // namespace torch
+} // namespace paddle
 } // namespace horovod
 
-#endif // HOROVOD_TORCH_TENSOR_UTIL_H
+#endif // HOROVOD_PADDLE_TENSOR_UTIL_H

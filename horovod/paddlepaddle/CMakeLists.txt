@@ -50,8 +50,8 @@ set(PaddlePaddle_CXX11 ${PaddlePaddle_CXX11} PARENT_SCOPE)
 list(APPEND PADDLEPADDLE_SOURCES "${PROJECT_SOURCE_DIR}/horovod/paddlepaddle/handle_manager.cc"
                             "${PROJECT_SOURCE_DIR}/horovod/paddlepaddle/ready_event.cc"
                             "${PROJECT_SOURCE_DIR}/horovod/paddlepaddle/cuda_util.cc"
-                            "${PROJECT_SOURCE_DIR}/horovod/paddlepaddle/mpi_ops_v2.cc"
-                            "${PROJECT_SOURCE_DIR}/horovod/paddlepaddle/adapter_v2.cc")
+                            "${PROJECT_SOURCE_DIR}/horovod/paddlepaddle/mpi_ops.cc"
+                            "${PROJECT_SOURCE_DIR}/horovod/paddlepaddle/adapter.cc")
 
 # Create library
 set_output_dir()
@@ -61,4 +61,4 @@ target_include_directories(${PADDLEPADDLE_TARGET_LIB} PRIVATE "${FLATBUFFERS_INC
 target_link_libraries(${PADDLEPADDLE_TARGET_LIB} ${LINKER_LIBS} ${PADDLEPADDLE_LINKER_LIBS})
 set_target_properties(${PADDLEPADDLE_TARGET_LIB} PROPERTIES SUFFIX "${Python_SUFFIX}")
 set_target_properties(${PADDLEPADDLE_TARGET_LIB} PROPERTIES PREFIX "")
-set_target_properties(${PADDLEPADDLE_TARGET_LIB} PROPERTIES OUTPUT_NAME "mpi_lib_v2")
+set_target_properties(${PADDLEPADDLE_TARGET_LIB} PROPERTIES OUTPUT_NAME "mpi_lib")

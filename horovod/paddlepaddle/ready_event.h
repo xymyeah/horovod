@@ -13,8 +13,8 @@
 // limitations under the License.
 // =============================================================================
 
-#ifndef HOROVOD_TORCH_READY_EVENT_H
-#define HOROVOD_TORCH_READY_EVENT_H
+#ifndef HOROVOD_PADDLE_READY_EVENT_H
+#define HOROVOD_PADDLE_READY_EVENT_H
 
 #if HAVE_GPU
 #include "cuda_runtime.h"
@@ -25,7 +25,7 @@
 #include "../common/common.h"
 
 namespace horovod {
-namespace torch {
+namespace paddle {
 
 using namespace horovod::common;
 
@@ -44,7 +44,7 @@ private:
 
 std::shared_ptr<ReadyEvent> RecordReadyEvent(int device);
 
-} // namespace torch
+} // namespace paddle
 } // namespace horovod
 
-#endif // HOROVOD_TORCH_READY_EVENT_H
+#endif // HOROVOD_PADDLE_READY_EVENT_H

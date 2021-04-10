@@ -16,7 +16,7 @@
 #include "tensor_util.h"
 
 namespace horovod {
-namespace torch {
+namespace paddle {
 
 // Define all types for TensorUtil.
 TENSOR_UTIL_DEFINE_CPU_TYPE(DataType::HOROVOD_UINT8, THByteTensor,
@@ -51,5 +51,5 @@ TENSOR_UTIL_DEFINE_CUDA_TYPE(DataType::HOROVOD_FLOAT64, THCudaDoubleTensor,
                              THDoubleTensor, THCudaDoubleStorage)
 #endif
 
-} // namespace torch
+} // namespace paddle
 } // namespace horovod

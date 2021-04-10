@@ -24,7 +24,7 @@
 #include "cuda_util.h"
 
 namespace horovod {
-namespace torch {
+namespace paddle {
 
 with_device::with_device(int device) {
   if (device == CPU_DEVICE_ID) {
@@ -48,5 +48,5 @@ with_device::~with_device() {
 #endif
 }
 
-} // namespace torch
+} // namespace paddle
 } // namespace horovod

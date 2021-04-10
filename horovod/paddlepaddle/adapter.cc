@@ -13,11 +13,11 @@
 // limitations under the License.
 // =============================================================================
 
-#include "adapter_v2.h"
+#include "adapter.h"
 #include "cuda_util.h"
 
 namespace horovod {
-namespace torch {
+namespace paddle {
 
 ::torch::ScalarType GetTorchDataType(DataType dtype) {
   switch (dtype) {
@@ -161,5 +161,5 @@ void ThrowIfError(Status status) {
   }
 }
 
-} // namespace torch
+} // namespace paddle
 } // namespace horovod

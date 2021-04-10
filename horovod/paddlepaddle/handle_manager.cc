@@ -16,7 +16,7 @@
 #include "handle_manager.h"
 
 namespace horovod {
-namespace torch {
+namespace paddlepaddle {
 
 int HandleManager::AllocateHandle() {
   int handle = last_handle_.fetch_add(1) + 1;
@@ -56,5 +56,5 @@ void HandleManager::Reset() {
   last_handle_ = 0;
 }
 
-} // namespace torch
+} // namespace paddlepaddle
 } // namespace horovod

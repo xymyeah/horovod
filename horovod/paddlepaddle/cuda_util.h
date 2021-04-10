@@ -13,11 +13,11 @@
 // limitations under the License.
 // =============================================================================
 
-#ifndef HOROVOD_TORCH_CUDA_UTIL_H
-#define HOROVOD_TORCH_CUDA_UTIL_H
+#ifndef HOROVOD_PADDLE_CUDA_UTIL_H
+#define HOROVOD_PADDLE_CUDA_UTIL_H
 
 namespace horovod {
-namespace torch {
+namespace paddle {
 
 class with_device {
 public:
@@ -31,4 +31,4 @@ private:
 }
 }
 
-#endif // HOROVOD_TORCH_CUDA_UTIL_H
+#endif // HOROVOD_PADDLE_CUDA_UTIL_H

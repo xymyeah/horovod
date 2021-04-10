@@ -13,8 +13,8 @@
 // limitations under the License.
 // =============================================================================
 
-#ifndef HOROVOD_TORCH_HANDLE_MANAGER_H
-#define HOROVOD_TORCH_HANDLE_MANAGER_H
+#ifndef HOROVOD_PADDLE_HANDLE_MANAGER_H
+#define HOROVOD_PADDLE_HANDLE_MANAGER_H
 
 #include <atomic>
 #include <memory>
@@ -24,7 +24,7 @@
 #include "../common/common.h"
 
 namespace horovod {
-namespace torch {
+namespace paddle {
 
 using namespace horovod::common;
 
@@ -42,7 +42,7 @@ private:
   std::mutex mutex_;
 };
 
-} // namespace torch
+} // namespace paddle
 } // namespace horovod
 
-#endif // HOROVOD_TORCH_HANDLE_MANAGER_H
+#endif // HOROVOD_PADDLE_HANDLE_MANAGER_H

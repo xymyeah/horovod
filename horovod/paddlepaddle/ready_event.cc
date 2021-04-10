@@ -38,7 +38,7 @@ extern THCState* state;
 #endif
 
 namespace horovod {
-namespace torch {
+namespace paddle {
 
 #if HAVE_GPU
 struct ReadyEventRegistry {
@@ -114,5 +114,5 @@ std::shared_ptr<ReadyEvent> RecordReadyEvent(int device) {
   }
 }
 
-} // namespace torch
+} // namespace paddle
 } // namespace horovod

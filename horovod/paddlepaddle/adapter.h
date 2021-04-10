@@ -13,8 +13,8 @@
 // limitations under the License.
 // =============================================================================
 
-#ifndef HOROVOD_TORCH_ADAPTER_V2_H
-#define HOROVOD_TORCH_ADAPTER_V2_H
+#ifndef HOROVOD_PADDLE_ADAPTER_H
+#define HOROVOD_PADDLE_ADAPTER_H
 
 #include <torch/extension.h>
 #include <torch/torch.h>
@@ -22,7 +22,7 @@
 #include "../common/common.h"
 
 namespace horovod {
-namespace torch {
+namespace paddle {
 
 using namespace horovod::common;
 
@@ -74,7 +74,7 @@ private:
 
 void ThrowIfError(Status status);
 
-} // namespace torch
+} // namespace paddle
 } // namespace horovod
 
-#endif // HOROVOD_TORCH_ADAPTER_V2_H
+#endif // HOROVOD_PADDLE_ADAPTER_H
